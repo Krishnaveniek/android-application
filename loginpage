@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/uname1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="username" />
+    <EditText
+        android:id="@+id/pass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:inputType="textPassword"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:onClick="Login"/>
+</LinearLayout>
+
+
+mainactivity.java
+
+package com.example.loginapplication;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import android.widget.EditText;
+import android.widget.Toast;
+
+
+public class MainActivity extends AppCompatActivity {
+    private EditText unameEditText;
+    private EditText passEditText;
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        unameEditText = findViewById(R.id.uname1);
+        passEditText = findViewById(R.id.pass1);
+
+    }
+    public void Login(){
+        String username = unameEditText.getText().toString();
+        String password = passEditText.getText().toString();
+        if (isValidCredentials(username,password)) {
+            Toast.makeText(this, "login successful", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this,"invalid credentials",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private boolean isValidCredentials(String username,String password){
+        return username.equals("akash")&&password.equals("1234");
+    }
+}
